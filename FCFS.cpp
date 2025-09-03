@@ -33,9 +33,9 @@ int main(){
         tot_wt+=waiting_time[j];
     }
     avg_wt=tot_wt/n;
-    cout<<"The waiting time of each process is as follows: ";
+    cout<<"The waiting time of each process is as follows: "<< endl;
     for(int j=0; j<n; j++){
-        cout<<waiting_time[j]<<endl;
+        cout<<"Process "<<j+1<<" : "<<waiting_time[j]<<endl;
     }
     cout<<endl;
     cout<<"The avg waiting time is: "<< avg_wt<< endl;
