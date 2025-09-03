@@ -31,10 +31,10 @@ By making these changes, your document will be much more readable, professional,
 ---
 
 "# OperatingSystem_Sem3"
-# 1. System Calls
-# 2. Shell Commands
-# 3. CPU Scheduling Algo
-  + # FCFS
+### 1. System Calls
+### 2. Shell Commands
+### 3. CPU Scheduling Algo
+  + #### FCFS
     > First Come First Serve  
     > Ready Queue -> FIFO  
     > Not Optimal \(Changing order of the processes has a significant in avg_waitingTime.\)
@@ -45,6 +45,7 @@ By making these changes, your document will be much more readable, professional,
     int main(){
       return 0;
     };
-  + # SJF
-# 4. Process Synchronization
-# 5. Deadlock
+```
+  + #### SJF
+### 4. Process Synchronization
+### 5. Deadlock
