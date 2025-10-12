@@ -1,3 +1,7 @@
+//This file contained book C code converted to C++ code for p thread execution initially
+//Then commenting that we wrote a better code. // small addition for understanding threading in action. print each thread’s ID (so you can visually see them running concurrently). But that did not have proper printing features due to which there was a glitch in the display output..like process 1 2 2 3 only and not all processes in the range...// pitfall description: threads share the same memory address for i. By the time each thread starts running, the loop might have already incremented i several times.
+//final code has all glitches fixed.
+
 #include <iostream>
 #include <pthread.h>
 #define NUM_THREADS 5

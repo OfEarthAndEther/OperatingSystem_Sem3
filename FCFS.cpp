@@ -39,7 +39,7 @@ int main(){
     for(auto it:exit_time_process){//iteration through map
         cout<<"Burst Time: "<<it.first<<"\t Exit Time: "<<it.second<<endl;
     }
-    //
+    //waiting time ke liye alag map bna lo(final)
 
     return 0;
 }
