@@ -1,6 +1,5 @@
-##Threads
--> A thread library provides the programmer with an API for creating and man-
-aging threads.  
+## Threads
+-> A **thread library provides** the programmer with an **API for creating and managing threads**.  
     
 -> There are two primary ways of implementing a thread library.
     
@@ -18,6 +17,18 @@ aging threads.
     
 -> However, because in most instances the JVM is running on top of a host operating system, the **Java thread API is generally implemented** using a **thread library** available on the **host system**. This means that on **Windows systems, Java threads are typically implemented using** the ***Windows API; UNIX, Linux, and macOS systems.*** typically use Pthreads.
 -> For POSIX and Windows threading, any data declared globally — that is, declared outside of any function — are shared among all threads belonging to the same process. Because Java has no equivalent notion of global data, access to shared data must be explicitly arranged between threads.
+
+-> *Two general strategies for creating multiple threads*: **asynchronous threading** and **synchronous threading**. 
+-> With asynchronous threading, once the parent creates a child thread, the **parent resumes its execution**, so that the **parent and child execute concurrently and independently** of one another. Because the threads are independent, there is typically **little data sharing** between them. Asynchronous threading is the strategy used in the multithreaded server illustrated in Figure 4.2 and is also commonly used for designing responsive user interfaces.
+-> Synchronous threading occurs when the **parent thread creates one or more children and then must wait for all of its children to terminate before it resumes**. Here, the *threads created by the parent perform work concurrently*, **but the parent cannot continue until this work has been completed**. Once each thread has finished its work, it terminates and joins with its parent. Only after all of the children have joined can the parent resume execution. Typically, synchronous threading involves **significant data sharing among threads**. For example, the parent thread may combine the results calculated by its various children.
+    
+#### 1. Pthreads
+1. POSIX Threads (Pthreads) specification is like the abstraction layer or interface (API) for threading in C and C++.
+2. Pthreads refers to the POSIX standard (IEEE 1003.1c) defining an API for thread creation and synchronization. This is a specification for thread behavior, not an implementation.
+3. Many UNIX-like systems, such as Linux and macOS, include built-in support for the Pthreads specification. Windows does not support Pthreads by default, but there are some third-party libraries that make it possible to use Pthreads on Windows.
+
+#### 2. Windows Thread
+1. 
 
 >Scope Contention
 >LWP (Light Weight Process)
