@@ -9,8 +9,11 @@ aging threads.
 -> The ***second approach*** is to implement a **kernel-level library supported directly by the operating system**. In this case, code and data structures for the library exist in kernel space. Invoking a function in the API for the library typically results in a system call to the kernel.
     
 -> **Three main thread libraries** are in use today: **POSIX Pthreads, Windows, and Java.** 
+
 -> Pthreads, the threads extension of the POSIX standard, may be provided as either a user-level or a kernel-level library.
+
 -> The Windows thread library is a kernel-level library available on Windows systems.
+
 -> The Java thread API allows threads to be created and managed directly in Java programs.
     
 -> However, because in most instances the JVM is running on top of a host operating system, the **Java thread API is generally implemented** using a **thread library** available on the **host system**. This means that on **Windows systems, Java threads are typically implemented using** the ***Windows API; UNIX, Linux, and macOS systems.*** typically use Pthreads.
