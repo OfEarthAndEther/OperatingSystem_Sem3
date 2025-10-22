@@ -26,9 +26,18 @@
 1. POSIX Threads (Pthreads) specification is like the abstraction layer or interface (API) for threading in C and C++.
 2. Pthreads refers to the POSIX standard (IEEE 1003.1c) defining an API for thread creation and synchronization. This is a specification for thread behavior, not an implementation.
 3. Many UNIX-like systems, such as Linux and macOS, include built-in support for the Pthreads specification. Windows does not support Pthreads by default, but there are some third-party libraries that make it possible to use Pthreads on Windows.
+4. All Pthreads programs must include the pthread.h header file.
+5. Each thread has a set of attributes,
+including stack size and scheduling information.
+6. Synchronization mechanism:
+a) MUTEX LOCKS: When a thread wants to access a shared resource, it must first acquire the associated mutex - if the mutex is already locked by another thread, the requesting thread enters a waiting state until the lock becomes available.
+b) 
+7. 
 
 #### 2. Windows Thread
-1. 
+1. We must include the
+windows.h header file when using the Windows API.
+2. 
 
 >Scope Contention
 >LWP (Light Weight Process)
