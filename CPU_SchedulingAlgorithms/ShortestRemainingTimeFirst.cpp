@@ -1,5 +1,3 @@
-// SJF is the special case of priority scheduling(non-pre-epmtive?) when priority is given to the burst time
-//Priority Scheduling can be intrinsically assigned (system assigned) OR can be extrinsically assigned (user assigned).
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -8,8 +6,7 @@ struct Process {
     int pid;         // Process ID
     int arrival;     // Arrival time
     int burst;       // Burst time (original)
-    int remaining;   // Remaining burst time
-    int priority;    // Priority value (lower value = higher priority)
+    int remaining;   // Remaining time
     int finish;      // Completion time
     int waiting;     // Waiting time
     int turnaround;  // Turnaround time
@@ -32,37 +29,32 @@ int main() {
         cout << "Enter burst time for process " << i + 1 << ": ";
         cin >> p[i].burst;
         p[i].remaining = p[i].burst;
-    }
-    for (int i = 0; i < n; ++i) {
-        cout << "Enter priority for process " << i + 1 << " (lower = higher priority): ";
-        cin >> p[i].priority;
         p[i].completed = false;
     }
 
-    int completed = 0, time = 0;
+    int completed = 0, time = 0, prev = -1;
     float total_waiting = 0, total_turnaround = 0;
 
     while (completed < n) {
-        int idx = -1;
-        int highest_priority = 1e9;
-        // Find the highest priority process that has arrived and has remaining burst
+        int idx = -1, min_rem = 1e9;
         for (int i = 0; i < n; ++i) {
-            if (p[i].arrival <= time && !p[i].completed && p[i].remaining > 0) {
-                if (p[i].priority < highest_priority) {
-                    highest_priority = p[i].priority;
-                    idx = i;
-                }
+            if (p[i].arrival <= time && !p[i].completed && p[i].remaining < min_rem && p[i].remaining > 0) {
+                min_rem = p[i].remaining;
+                idx = i;
             }
         }
+
         if (idx == -1) {
-            // No process ready, move time forward
+            // No process is ready; move time forward
             time++;
             continue;
         }
-        // Preemptively run process with highest priority for 1 time unit
+
+        // Run process for 1 time unit (preemption step)
         p[idx].remaining--;
         time++;
-        // If the process finishes
+
+        // Check for completion
         if (p[idx].remaining == 0) {
             p[idx].finish = time;
             p[idx].completed = true;
@@ -70,16 +62,14 @@ int main() {
         }
     }
 
-    // Calculate waiting and turnaround
-    cout << "\nProcess\tArrival\tBurst\tPriority\tFinish\tWaiting\tTurnaround\n";
+    cout << "\nProcess\tArrival\tBurst\tFinish\tWaiting\tTurnaround\n";
     for (int i = 0; i < n; ++i) {
         p[i].turnaround = p[i].finish - p[i].arrival;
         p[i].waiting = p[i].turnaround - p[i].burst;
         total_waiting += p[i].waiting;
         total_turnaround += p[i].turnaround;
         cout << p[i].pid << "\t" << p[i].arrival << "\t" << p[i].burst << "\t"
-             << p[i].priority << "\t\t" << p[i].finish << "\t"
-             << p[i].waiting << "\t" << p[i].turnaround << "\n";
+             << p[i].finish << "\t" << p[i].waiting << "\t" << p[i].turnaround << "\n";
     }
     cout << "\nAverage Waiting Time: " << total_waiting / n;
     cout << "\nAverage Turnaround Time: " << total_turnaround / n << endl;
