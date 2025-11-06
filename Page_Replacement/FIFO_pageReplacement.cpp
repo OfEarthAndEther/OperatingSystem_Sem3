@@ -10,7 +10,7 @@ int main() {
     unordered_set<int> s;
 
     for (int p : pages) {
-        if (s.find(p) == s.end()) {
+        if (s.find(p) == s.end()) {//find will return end()...which is past the last ele..yani ele nhi mila
             if (q.size() == capacity) {
                 s.erase(q.front());
                 q.pop();
